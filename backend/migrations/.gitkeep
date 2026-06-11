@@ -1,0 +1,2 @@
+# bun migrations live here. Create them via the create-migration skill.
+# Naming: NNNN_description.go (or .sql), sequential, never edit a shipped one.

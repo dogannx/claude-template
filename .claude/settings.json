@@ -1,0 +1,40 @@
+{
+  "$comment": "Shared team settings for Claude Code. Personal overrides go in settings.local.json (gitignored).",
+  "permissions": {
+    "allow": [
+      "Bash(go test:*)",
+      "Bash(go build:*)",
+      "Bash(go vet:*)",
+      "Bash(go fmt:*)",
+      "Bash(gofmt:*)",
+      "Bash(yarn:*)",
+      "Bash(make:*)",
+      "Bash(docker compose:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(bash scripts/check-system.sh)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash .claude/hooks/session-start.sh" }
+        ]
+      }
+    ],
+    "$comment_stop": "Stop hook is OFF by default (fires every turn → noisy). To enable the gentle session-end nudge, uncomment the Stop block below.",
+    "$Stop_disabled": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash .claude/hooks/session-end-reminder.sh" }
+        ]
+      }
+    ]
+  },
+  "env": {}
+}

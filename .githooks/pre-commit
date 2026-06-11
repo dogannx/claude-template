@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Pre-commit: run the OS health check as a non-blocking warning, plus fast format checks.
+# Install once: `make hooks-install` (sets core.hooksPath to .githooks).
+set -uo pipefail
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+# OS decay warnings (never block the commit).
+[ -x scripts/check-system.sh ] && bash scripts/check-system.sh || true
+
+# Block on secrets accidentally staged.
+if git diff --cached --name-only | grep -qx '.env'; then
+  echo "❌ Refusing to commit .env (secrets). Unstage it."
+  exit 1
+fi
+
+# Fast Go formatting check on staged Go files (block if unformatted).
+if command -v gofmt >/dev/null; then
+  unformatted=$(git diff --cached --name-only --diff-filter=ACM | grep '\.go$' | xargs -r gofmt -l 2>/dev/null)
+  if [ -n "$unformatted" ]; then
+    echo "❌ These Go files need gofmt:"; echo "$unformatted"
+    echo "   Run: gofmt -w <files>"
+    exit 1
+  fi
+fi
+exit 0

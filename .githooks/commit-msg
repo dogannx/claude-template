@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# commit-msg: enforce Conventional Commits (see docs/conventions.md).
+# Install once: `make hooks-install`.
+set -uo pipefail
+msg_file="$1"
+header=$(head -n1 "$msg_file")
+
+# Allow merge/revert commits.
+case "$header" in
+  Merge*|Revert*) exit 0 ;;
+esac
+
+pattern='^(feat|fix|refactor|docs|test|chore|perf|build|ci)(\([a-z0-9_-]+\))?!?: .{1,}$'
+if ! printf '%s' "$header" | grep -Eq "$pattern"; then
+  echo "❌ Commit message must follow Conventional Commits."
+  echo "   e.g.  feat(auth): add refresh token rotation"
+  echo "   types: feat|fix|refactor|docs|test|chore|perf|build|ci"
+  echo "   got:  $header"
+  exit 1
+fi
+exit 0

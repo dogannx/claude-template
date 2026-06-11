@@ -1,0 +1,33 @@
+# Environment / secrets
+.env
+.env.local
+*.local
+
+# Go
+/backend/bin/
+/backend/tmp/
+*.test
+*.out
+
+# Node / Vue
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.yarn/*
+!/frontend/.yarn/patches
+!/frontend/.yarn/releases
+!/frontend/.yarn/plugins
+.yarn-error.log
+
+# Docker
+docker-data/
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# Claude local (keep shared, ignore personal)
+.claude/settings.local.json
+backups/
