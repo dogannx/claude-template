@@ -71,8 +71,10 @@ who forgets and takes shortcuts — not an ideal one.
 |------------------|--------------------|-----------------------------|----------------------------------|-------------------------------------------|
 | `memory/`        | dev + AI           | when a fact changes; `/session-end` | AI acts on wrong facts (worst) | SessionStart hook + `last-verified` staleness check + CI |
 | `todo/TODO.md`   | dev + AI           | session start & end         | lose track of work               | `/session-start` reads it; surfaced in check |
+| `todo/done.md`   | AI (`/kaydet`)     | every `[x]` (move from TODO)| "what did we ship" trail is lost | `/kaydet` Step 3 enforces the move        |
 | `notes/sessions/`| AI (`/session-end`)| each session                | lose "why/what happened"         | `/session-end` writes it; check warns if missing today |
 | `notes/progress.md`| AI               | `/session-end`              | no high-level timeline           | written by `/session-end`                 |
+| `notes/decisions/`| AI (`/karar`) + dev| at each small decision     | small calls get re-litigated     | `/karar` routes small decisions here      |
 | `docs/` (standards)| dev              | rarely (on convention change)| guidance drifts from reality    | CI enforces the rules they describe       |
 | ADRs             | dev + AI           | at decision time            | decisions re-litigated/forgotten | `/new-adr` + Memory-impact requirement    |
 | `.claude/skills` | dev                | when a task repeats 3×      | manual repetition                | none needed (additive, low decay)         |

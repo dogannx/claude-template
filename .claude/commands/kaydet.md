@@ -17,8 +17,14 @@ Aşağıdakileri **sırayla ve otomatik** yap, sonra tek bir "çıkabilirsin" ö
    `.claude/templates/session-template.md` şablonuyla. Hedef, yapılanlar, kararlar,
    değişen dosyalar, açık işler, "sonraki sefer için notlar".
 
-3. **TODO güncelle:** `todo/TODO.md`'de biteni işaretle, yeni çıkanları ekle,
-   tamamlananları `todo/done.md`'ye taşı.
+3. **TODO + küçük kararlar (checklist — hepsini yap):**
+   - [ ] `todo/TODO.md`'de biten görevleri `[x]` ile işaretle.
+   - [ ] Her `[x]` satırını `todo/done.md` altına tarihli olarak **gerçekten taşı**
+         (TODO'da bırakma — taşımayı atlamak en sık unutulan adım).
+   - [ ] Bu oturumda çıkan yeni görevleri TODO'ya ekle.
+   - [ ] ADR'ye değmeyen ama hatırlanmaya değer küçük teknik karar varsa
+         → `notes/decisions/README.md`'ye tarihli tek satır ekle.
+         (Eşik: [`notes/decisions/README.md`](../../notes/decisions/README.md))
 
 4. **İlerleme kaydet:** `notes/progress.md`'ye tarihli tek satır ekle.
 

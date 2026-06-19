@@ -29,6 +29,28 @@ TODO: Describe the project in 3–5 sentences.
 - `docs/`   → "**how** it works" — large, read on demand, changes occasionally.
 - `notes/`  → "**what happened**" — append-only history.
 
+## 2.5 Where to write what (decision routing)
+
+When something happens during a session, route it to **one** home — never both. If you
+hesitate between two rows, prefer the lighter-weight one (quick log over ADR, single
+memory line over a new doc).
+
+| What happened?                                          | Where it goes                                            |
+|---------------------------------------------------------|----------------------------------------------------------|
+| Big architectural decision (schema, auth, contract)     | `docs/architecture/decisions/NNNN-…md` (ADR)             |
+| Small technical decision (library, port, file format)   | `notes/decisions/README.md` (one dated line)             |
+| Task completed                                          | `todo/TODO.md` `[x]` **then move to** `todo/done.md`     |
+| New always-true fact (auth method, prod URL, owner)     | `memory/project-facts.md`                                |
+| New hard constraint (no PII in logs, region locked)     | `memory/constraints.md`                                  |
+| Conscious shortcut / tradeoff to revisit                | `memory/tech-debt.md`                                    |
+| Bug / gotcha / footgun to avoid                         | `memory/known-issues.md`                                 |
+| Project-specific snippet or cheatsheet                  | `references/` (only if real content exists)              |
+| Session story (what we did + why)                       | `notes/sessions/YYYY-MM-DD-<slug>.md`                    |
+| One-line dated timeline entry                           | `notes/progress.md`                                      |
+
+The `/kaydet` command walks this table automatically at session end. ADR vs quick-log
+threshold lives in [`notes/decisions/README.md`](notes/decisions/README.md).
+
 ## 3. Tech stack (summary)
 
 - **Backend:** Go, Fiber, bun ORM, PostgreSQL
