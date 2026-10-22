@@ -5,8 +5,8 @@ review-cadence: 90d
 
 # Hard Constraints
 
-> Non-negotiable limits. The AI must respect these without being reminded.
-> Violating one is a real-world failure (legal, money, data loss, outage).
+> Non-negotiable, project-specific limits. Violating one is a real-world failure
+> (legal, money, data loss, outage). Generic safety rules don't belong here.
 
 ## Do-not-touch zones
 
@@ -25,9 +25,3 @@ review-cadence: 90d
 
 - TODO (e.g. "all writes that span tables use a transaction",
   "destructive scripts require explicit confirmation").
-
-## Boundaries for AI assistants
-
-- Never commit secrets or `.env`.
-- Never run destructive commands (drop db, force push, `rm -rf`) without explicit ask.
-- Schema changes are migrations, never manual DB edits.

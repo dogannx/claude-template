@@ -14,6 +14,6 @@ record_changed=$(git diff --name-only -- memory/ notes/ todo/ 2>/dev/null | head
 
 if [ -n "$code_changed" ] && [ -z "$record_changed" ]; then
   echo "🟡 You changed code but didn't update memory/, notes/, or todo/."
-  echo "   Consider running /session-end to record decisions and progress."
+  echo "   Say "notlarını al" (/kaydet) to record decisions and progress."
 fi
 exit 0

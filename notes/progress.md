@@ -1,7 +1,7 @@
 # Progress Log
 
 A reverse-chronological, one-line-per-entry timeline of meaningful progress.
-Newest at the top. Updated at the end of each session (via `/session-end`).
+Newest at the top. Updated at the end of each session (via `/kaydet`).
 
 ## 2026
 

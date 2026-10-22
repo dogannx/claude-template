@@ -5,17 +5,12 @@ argument-hint: <short decision title>
 
 Create a new ADR for: **$ARGUMENTS**
 
-1. Find the highest existing number in `docs/architecture/decisions/` and use the next
-   one, zero-padded to 4 digits (e.g. `0007-`).
-2. Copy `.claude/templates/adr-template.md` to
-   `docs/architecture/decisions/NNNN-<kebab-title>.md`.
-3. Fill in context, the decision, considered alternatives, and consequences based on
-   our discussion. Set status to `Accepted` (or `Proposed` if not yet decided).
-4. **Complete the "Memory impact" section** and actually apply it: if the decision adds
-   or changes a project fact or constraint, update `memory/project-facts.md` /
-   `memory/constraints.md` now so the decision is in force, not just archived.
-5. If this ADR **supersedes** an earlier one: set the old ADR's status to
-   `Superseded by NNNN`, update the index, and revert any now-obsolete memory entries.
-6. Add a line to `docs/architecture/decisions/README.md` index.
+1. Next number in `docs/architecture/decisions/` (4 digits) →
+   `NNNN-<kebab-title>.md`, from `.claude/templates/adr-template.md`.
+2. Fill it from our discussion. Status `Accepted`, or `Proposed` if not yet decided.
+3. Apply its "Memory impact" to `memory/` so the decision is actually in force.
+4. If it supersedes an earlier ADR, mark that one `Superseded by NNNN` and revert its
+   memory entries.
+5. Add a row to the index in `docs/architecture/decisions/README.md`.
 
-Show me the final ADR plus the memory changes for review.
+Show me the ADR and the memory changes.

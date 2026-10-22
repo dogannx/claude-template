@@ -1,14 +1,8 @@
 ---
-description: "Bu oturumda ne yaptık — kısa özet çıkar (kaydetmeden)."
+description: "Bu oturumda ne yaptık — kısa özet (dosyaya yazmaz). Tetikleyiciler: \"özetle\", \"ne yaptık\", \"bugün ne yaptık\", \"nereye geldik\"."
 ---
 
-# /ozet — Summarize the session so far
+# /ozet — Oturum özeti
 
-Tetikleyiciler: **"özetle"**, **"ne yaptık"**, **"bugün ne yaptık"**, **"nereye geldik"**.
-
-Dosyaya yazmadan, bu oturumda olanları kısaca özetle:
-- Yapılan işler, alınan kararlar, değişen dosyalar (`git diff --stat`).
-- Açık/yarım kalan işler.
-- Önerilen sonraki adım(lar).
-
-Not: Bu komut **kaydetmez**. Kaydetmek için `/kaydet` ("notlarını al") kullan.
+Hiçbir dosyaya yazmadan özetle: yapılanlar, alınan kararlar, değişen dosyalar
+(`git diff --stat`), yarım kalanlar, önerilen sonraki adım. Kaydetmek için `/kaydet`.

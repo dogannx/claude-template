@@ -25,9 +25,9 @@ The change we are making, stated clearly in active voice.
 - Negative / trade-offs: ...
 - Follow-ups: migrations, docs, refactors this implies.
 
-## Memory impact (REQUIRED — keeps decisions alive)
+## Memory impact
 
-How this ADR changes day-to-day behavior. An archived decision nobody acts on is dead.
+How this ADR changes day-to-day behavior, so it is in force and not just archived.
 
 - **`memory/project-facts.md`:** what fact to add/update (e.g. new auth method) — or "none".
 - **`memory/constraints.md`:** any new hard rule this creates — or "none".

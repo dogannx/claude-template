@@ -5,9 +5,8 @@ review-cadence: 30d   # how often this file should be re-verified
 
 # Project Facts
 
-> Invariant truths the AI must always know. Keep entries short and current.
+> Invariant truths about this project. Keep entries short and current.
 > Replace every TODO with the real value when starting a project.
-> When you confirm everything below is still accurate, set `last-verified` to today.
 
 ## Identity
 

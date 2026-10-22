@@ -1,31 +1,79 @@
 package http
 
 import (
-	"io"
+	"database/sql"
+	"encoding/json"
 	"net/http/httptest"
 	"testing"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/uptrace/bun"
+	"github.com/uptrace/bun/dialect/pgdialect"
+	"github.com/uptrace/bun/driver/pgdriver"
 )
 
-// Sanity test that the app boots and the health route is registered.
-// (No DB needed here; healthHandler tolerates a nil-ish ping path in real wiring.)
-func TestHealthRouteRegistered(t *testing.T) {
-	app := fiber.New()
-	app.Get("/api/v1/health", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{"status": "ok"})
-	})
+// unreachableDB returns a bun.DB whose pings fail fast, so the real router can be
+// exercised without a running PostgreSQL.
+func unreachableDB(t *testing.T) *bun.DB {
+	t.Helper()
+	sqldb := sql.OpenDB(pgdriver.NewConnector(
+		pgdriver.WithDSN("postgres://u:p@127.0.0.1:1/db?sslmode=disable&dial_timeout=200ms"),
+	))
+	db := bun.NewDB(sqldb, pgdialect.New())
+	t.Cleanup(func() { db.Close() })
+	return db
+}
 
-	req := httptest.NewRequest(fiber.MethodGet, "/api/v1/health", nil)
-	resp, err := app.Test(req)
-	if err != nil {
-		t.Fatalf("request failed: %v", err)
+func TestRouter(t *testing.T) {
+	app := NewRouter(unreachableDB(t))
+
+	tests := []struct {
+		name       string
+		path       string
+		wantStatus int
+		check      func(t *testing.T, body map[string]any)
+	}{
+		{
+			name:       "health reports degraded when DB is down",
+			path:       "/api/v1/health",
+			wantStatus: fiber.StatusOK,
+			check: func(t *testing.T, body map[string]any) {
+				if body["status"] != "degraded" {
+					t.Errorf("status = %v, want degraded", body["status"])
+				}
+			},
+		},
+		{
+			name:       "unknown route uses the shared error envelope",
+			path:       "/api/v1/nope",
+			wantStatus: fiber.StatusNotFound,
+			check: func(t *testing.T, body map[string]any) {
+				e, ok := body["error"].(map[string]any)
+				if !ok {
+					t.Fatalf("missing error envelope: %v", body)
+				}
+				if e["code"] != float64(fiber.StatusNotFound) {
+					t.Errorf("error.code = %v, want 404", e["code"])
+				}
+			},
+		},
 	}
-	if resp.StatusCode != fiber.StatusOK {
-		t.Fatalf("want 200, got %d", resp.StatusCode)
-	}
-	body, _ := io.ReadAll(resp.Body)
-	if string(body) == "" {
-		t.Fatal("empty body")
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			resp, err := app.Test(httptest.NewRequest(fiber.MethodGet, tt.path, nil), 5000)
+			if err != nil {
+				t.Fatalf("request failed: %v", err)
+			}
+			defer resp.Body.Close()
+			if resp.StatusCode != tt.wantStatus {
+				t.Fatalf("status code = %d, want %d", resp.StatusCode, tt.wantStatus)
+			}
+			var body map[string]any
+			if err := json.NewDecoder(resp.Body).Decode(&body); err != nil {
+				t.Fatalf("decode body: %v", err)
+			}
+			tt.check(t, body)
+		})
 	}
 }

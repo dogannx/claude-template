@@ -1,4 +1,3 @@
-<!-- Mirrors .claude/templates/pull-request-template.md so GitHub auto-loads it. -->
 # <type>: <short summary>
 
 ## What & why

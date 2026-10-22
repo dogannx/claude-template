@@ -1,27 +1,12 @@
 ---
-description: "Hızlı not yakala — içeriğe göre doğru dosyaya otomatik yerleştirir (todo, bug, borç, gerçek, fikir)."
+description: "Hızlı not yakala — içeriğe göre doğru dosyaya yerleştir (todo, bug, borç, gerçek, kısıt, fikir). Tetikleyiciler: \"bunu not et: …\", \"şunu hatırla: …\", \"yapılacak: …\", \"sorun var: …\", \"bug: …\", \"borç: …\", \"fikir: …\"."
 argument-hint: <not içeriği>
 ---
 
-# /not — Smart quick-capture
-
-Tetikleyiciler: **"bunu not et: …"**, **"şunu hatırla: …"**, **"kaydet şunu: …"**,
-**"yapılacak: …"**, **"sorun var: …"**, **"bug: …"**, **"borç: …"**, **"fikir: …"**.
+# /not — Hızlı not
 
 İçerik: **$ARGUMENTS**
 
-Notu **doğru yere** yönlendir (intent'i içerikten anla). Tek satır ekle, gerekirse
-tarihle, sonra **nereye yazdığını** söyle:
-
-| İçerik türü                      | Hedef dosya                  |
-|----------------------------------|------------------------------|
-| Yapılacak iş / görev             | `todo/TODO.md`               |
-| Hata / bug / kırık davranış      | `memory/known-issues.md`     |
-| Bilinçli teknik borç / kestirme  | `memory/tech-debt.md`        |
-| Kalıcı gerçek (auth, ortam, vb.) | `memory/project-facts.md`    |
-| Sert kısıt / kural               | `memory/constraints.md`      |
-| Mimari karar                     | `/karar` öner (ADR)          |
-| Geçici / sınıflandırılamayan     | bugünün `notes/sessions/` notu |
-
-Belirsizse hangi dosyaya gideceğini **bir cümleyle sor**, sonra yaz. Memory dosyasına
-yazdıysan `last-verified`'ı bugüne çek.
+CLAUDE.md §3 tablosuna göre doğru dosyaya tek satır olarak ekle (mimari kararsa `/karar`
+öner; fikirler `todo/backlog.md`'ye, sınıflandırılamayanlar bugünün oturum notuna).
+Nereye yazdığını söyle. Gerçekten iki yere de uyuyorsa tek cümleyle sor.

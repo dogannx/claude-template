@@ -1,19 +1,20 @@
 # memory/ — Project Truth Layer
 
-The **always-true, always-loaded** facts an AI assistant (or human) must know before
-touching this project. This is NOT documentation and NOT history — it is the small,
+The **always-true** facts anyone (human or AI) needs before touching this project.
+Root `CLAUDE.md` imports these files with `@memory/...`, so Claude loads them every
+session automatically. This is NOT documentation and NOT history — it is the small,
 curated set of current realities that change rarely but matter constantly.
 
 ## How it differs from `docs/` and `notes/`
 
 | Layer      | Question it answers        | Size       | Read when        | Changes      |
 |------------|----------------------------|------------|------------------|--------------|
-| `memory/`  | "What is true RIGHT NOW?"  | tiny       | **every time**   | rarely       |
+| `memory/`  | "What is true RIGHT NOW?"  | tiny       | auto-loaded      | rarely       |
 | `docs/`    | "How does this work?"      | large      | on demand        | occasionally |
 | `notes/`   | "What happened?"           | grows      | for history      | append-only  |
 
 If `memory/` grows large, you're putting reference material in it — move that to `docs/`.
-Memory must stay scannable in under a minute.
+Every line here costs context in every session — keep it scannable in under a minute.
 
 ## Files
 
@@ -48,5 +49,5 @@ been verified within its cadence. **Review cadence by file:**
 
 Update `memory/` the moment a fact changes (new auth flow, resolved bug, new constraint),
 and bump `last-verified` when you confirm a file is still accurate. A stale memory file is
-worse than none — the AI will confidently act on wrong facts. The `/session-end` flow and
-the SessionStart health check both prompt you.
+worse than none — the AI will confidently act on wrong facts. `/kaydet` and the
+SessionStart health check both help here.

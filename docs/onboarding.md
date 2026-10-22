@@ -32,7 +32,6 @@ This project is built to work with Claude. The loop is:
 
 ### Session start
 - Run `/basla` (or say "başlayalım"). Claude reads progress + todos and proposes a focus.
-- Confirm the focus before coding.
 
 ### During development
 - Use `/new-feature <name>` to plan before building.

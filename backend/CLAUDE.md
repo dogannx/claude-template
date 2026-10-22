@@ -1,6 +1,6 @@
 # CLAUDE.md — Backend (Go + Fiber)
 
-Context for AI assistants working in the backend. Read the root `CLAUDE.md` first.
+Backend-specific context; loaded on top of the root `CLAUDE.md`.
 
 ## Overview
 
@@ -24,14 +24,10 @@ backend/
 └── Dockerfile
 ```
 
-## Conventions (see also `docs/coding-standards.md`)
+## Conventions
 
-- Handlers are thin: validate/bind → call service → map result/error to response.
-- Business logic lives in services; DB access in repositories.
-- Pass `context.Context` through to all DB/external calls.
-- Wrap errors with context (`%w`); never panic in request paths.
-- Every schema change is a migration in `migrations/` — never hand-edit the DB.
-- New behavior ships with tests (`go test ./...`).
+Handlers thin → services hold logic → repositories hold bun queries. Full list in
+`docs/coding-standards.md`.
 
 ## Commands
 
@@ -42,10 +38,7 @@ go test ./...             # tests
 go vet ./... && go fmt ./...
 ```
 
-## When adding an endpoint
+## Skills
 
-1. Define/extend the bun model in `internal/model` (+ migration if schema changes).
-2. Add repository method(s) in `internal/repository`.
-3. Add/extend a service in `internal/service`.
-4. Add handler + route + DTO in `internal/http`.
-5. Write tests. Update docs/ADR if it changes architecture.
+- New endpoint → `add-endpoint` skill.
+- Schema change → `create-migration` skill.

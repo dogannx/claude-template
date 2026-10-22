@@ -13,7 +13,7 @@ Naming, Git, and process conventions. Keep these boring and consistent.
 ## Pull requests
 
 - One logical change per PR. Keep them reviewable.
-- Use `.claude/templates/pull-request-template.md`.
+- Use the PR template (`.github/pull_request_template.md`, auto-loaded by GitHub).
 - CI must pass (lint + test). Include migrations and tests with the change.
 
 ## Naming

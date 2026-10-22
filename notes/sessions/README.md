@@ -1,7 +1,7 @@
 # Session Notes
 
 One file per work session: `YYYY-MM-DD-<slug>.md`. Created at session end via
-`/session-end`, based on `.claude/templates/session-template.md`.
+`/kaydet`, based on `.claude/templates/session-template.md`.
 
 ## Why
 

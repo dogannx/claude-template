@@ -11,7 +11,7 @@ Use to review the current branch diff (or a given PR). Be specific and cite
 ## Gather context
 
 - `git diff main...HEAD` (or the PR diff) and `git log --oneline main..HEAD`.
-- Re-read `docs/coding-standards.md`, `docs/conventions.md`, and `memory/constraints.md`.
+- Relevant standards: `docs/coding-standards.md`, `docs/conventions.md`, `memory/constraints.md`.
 
 ## Review dimensions (in priority order)
 

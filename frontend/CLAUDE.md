@@ -1,6 +1,6 @@
 # CLAUDE.md — Frontend (Vue)
 
-Context for AI assistants working in the frontend. Read the root `CLAUDE.md` first.
+Frontend-specific context; loaded on top of the root `CLAUDE.md`.
 
 ## Overview
 

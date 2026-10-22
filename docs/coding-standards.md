@@ -1,15 +1,7 @@
 # Coding Standards
 
-Rules that keep the codebase consistent. AI assistants **must** follow these; humans too.
-Prefer matching existing code over personal preference.
-
-## General
-
-- Clarity over cleverness. Code is read far more than written.
-- Small, focused functions and PRs.
-- No dead code, no commented-out blocks left behind.
-- Handle errors explicitly; never silently swallow them.
-- No secrets in source. Use env/config.
+Project-specific conventions for humans and AI alike. Generic good practice (clarity,
+no dead code, explicit error handling, no secrets in source) is assumed, not listed.
 
 ## Go (backend)
 

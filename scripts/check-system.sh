@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Health check for the AI Project OS itself (not the app).
-# Surfaces decay: stale memory, TODO/done drift, uncommitted memory, missing session note.
+# Surfaces decay: stale memory and uncommitted memory changes.
 # Used by: the SessionStart hook, the git pre-commit hook, and CI.
 # Exit code: 0 = ok or warnings only; 1 = hard problems (CI may choose to fail).
 set -uo pipefail
@@ -54,17 +54,9 @@ else
   say "(not a git repo — skipping git checks)"
 fi
 
-echo "── Session note today ─────────────────────────────"
-today=$(date +%Y-%m-%d 2>/dev/null || echo "")
-if [ -n "$today" ] && ! ls notes/sessions/ 2>/dev/null | grep -q "^$today"; then
-  say "No session note for $today yet (create one at /session-end)."
-else
-  say "Session note present (or date unknown)."
-fi
-
 echo "───────────────────────────────────────────────────"
 if [ "$warn" -eq 1 ]; then
-  echo "System check: warnings above. Address them at /session-end."
+  echo "System check: warnings above. Address them at /kaydet."
 else
   echo "System check: all good."
 fi

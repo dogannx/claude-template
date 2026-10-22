@@ -5,7 +5,7 @@ Hook scripts that run on Claude Code lifecycle events. Configured in `.claude/se
 ## Active hooks
 
 - **SessionStart** → `session-start.sh` — runs `scripts/check-system.sh` and surfaces
-  stale `memory/`, uncommitted facts, missing session notes at the start of every session.
+  stale `memory/` and uncommitted facts at the start of every session.
 
 ## Optional / parked hooks
 
