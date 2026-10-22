@@ -1,5 +1,8 @@
 # AI Project OS — a Claude Code project template
 
+[![CI](https://github.com/dogannx/claude-template/actions/workflows/ci.yml/badge.svg)](https://github.com/dogannx/claude-template/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 A full-stack project template (Go + Fiber + bun / Vue + Vite / PostgreSQL) built around
 **Claude Code**. It gives the AI durable project memory, a place for every kind of
 knowledge, and a handful of commands, so context survives between sessions without
@@ -85,7 +88,8 @@ Adding your own command in any language is one markdown file — see
    ```
 3. Open the project in Claude Code and say **"başlayalım"**.
 4. Replace the `TODO`s in `CLAUDE.md` and `memory/project-facts.md` with your project's
-   details, rename the Go module in `backend/go.mod`, and replace this README.
+   details (until then `make check` warns that `last-verified` is unset), rename the Go
+   module in `backend/go.mod`, and replace this README.
 
 Backend runs on `http://localhost:8080`, frontend on `http://localhost:5173`.
 `make help` lists all tasks; `make check` runs the memory health check.
