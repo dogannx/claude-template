@@ -1,6 +1,9 @@
 # Claude Code hooks
 
-Hook scripts that run on Claude Code lifecycle events. Configured in `.claude/settings.json`.
+Hook scripts that run on Claude Code lifecycle events. Configured in `.claude/settings.json`
+(shared team settings; personal overrides go in the gitignored `settings.local.json`).
+Reference scripts as `"$CLAUDE_PROJECT_DIR/.claude/hooks/<name>.sh"` so they resolve no
+matter which subdirectory Claude was started from.
 
 ## Active hooks
 
@@ -17,7 +20,7 @@ want a gentle "did you `/kaydet`?" nudge at session end, paste this block inside
 "Stop": [
   {
     "hooks": [
-      { "type": "command", "command": "bash .claude/hooks/session-end-reminder.sh" }
+      { "type": "command", "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-end-reminder.sh\"" }
     ]
   }
 ]

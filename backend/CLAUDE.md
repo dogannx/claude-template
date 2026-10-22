@@ -19,7 +19,7 @@ backend/
 │   ├── repository/   # data access via bun
 │   ├── model/        # bun models / domain types
 │   └── config/       # env config loading
-├── migrations/       # bun migrations
+├── migrations/       # embedded SQL migrations (bun)
 ├── go.mod
 └── Dockerfile
 ```
@@ -33,7 +33,7 @@ Handlers thin → services hold logic → repositories hold bun queries. Full li
 
 ```bash
 go run ./cmd/api          # run server
-go run ./cmd/migrate up   # apply migrations
+go run ./cmd/migrate up   # apply migrations (also: down = roll back last group, status)
 go test ./...             # tests
 go vet ./... && go fmt ./...
 ```

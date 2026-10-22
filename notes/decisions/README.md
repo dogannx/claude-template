@@ -23,8 +23,7 @@ If in doubt → log here first. Promote to an ADR later if it turns out to be lo
 
 ## Log
 
-- 2026-06-11 — Keep template docs in English for portability; chat can be in any language.
-- 2026-10-22 — Dropped redundant AI guardrails (MUST/ALWAYS rules, forced checklists, duplicate EN commands); memory/ auto-loaded via `@` imports — modern models follow generic practice unprompted; hard rules are enforced by hooks/CI instead.
+_(no entries yet)_
 
 <!--
 Format:

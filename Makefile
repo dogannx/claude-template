@@ -1,6 +1,6 @@
 # Common project tasks. Adjust per project; keep CLAUDE.md "Common commands" in sync.
 
-.PHONY: help up down logs backend frontend test migrate fmt lint check hooks-install
+.PHONY: help up down logs backend frontend test migrate migrate-down migrate-status fmt lint check hooks-install
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -25,8 +25,14 @@ test: ## Run all tests
 	cd backend && go test ./...
 	cd frontend && yarn test
 
-migrate: ## Apply DB migrations
+migrate: ## Apply pending DB migrations
 	cd backend && go run ./cmd/migrate up
+
+migrate-down: ## Roll back the last migration group
+	cd backend && go run ./cmd/migrate down
+
+migrate-status: ## Show applied / pending migrations
+	cd backend && go run ./cmd/migrate status
 
 fmt: ## Format code
 	cd backend && go fmt ./...

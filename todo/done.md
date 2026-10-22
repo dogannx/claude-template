@@ -3,7 +3,11 @@
 Archive of completed tasks, newest first. Moved here from `TODO.md` at session end (`/kaydet`).
 Useful for changelogs and remembering what shipped.
 
-## 2026
+## Log
 
-- [x] 2026-10-22 — Template review: drop redundant AI guardrails, fix hook/build/test.
-- [x] 2026-06-11 — Bootstrap AI-assisted project template.
+_(nothing yet)_
+
+<!--
+Format:
+- [x] YYYY-MM-DD — task.
+-->

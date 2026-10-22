@@ -56,6 +56,9 @@ Adding your own command in any language is one markdown file — see
 "notlarını al, çıkıyorum"                 → /kaydet  → everything recorded, safe to leave
 ```
 
+See what that produces and how the next session recovers it, with real artifacts:
+[`examples/workflow/`](examples/workflow/).
+
 ## Structure
 
 ```
@@ -65,6 +68,7 @@ Adding your own command in any language is one markdown file — see
 ├── docs/              # architecture, ADRs, standards, conventions, system guide
 ├── notes/             # session notes, quick decisions log, progress timeline
 ├── todo/              # TODO / backlog / done
+├── examples/workflow/ # real session artifacts + how continuity works (delete when done)
 ├── .claude/
 │   ├── commands/      # /basla /kaydet /not /karar /ozet /new-feature /new-adr
 │   ├── skills/        # repeatable procedures (endpoint, migration, tests, review…)
@@ -92,13 +96,15 @@ Adding your own command in any language is one markdown file — see
    module in `backend/go.mod`, and replace this README.
 
 Backend runs on `http://localhost:8080`, frontend on `http://localhost:5173`.
-`make help` lists all tasks; `make check` runs the memory health check.
+`make help` lists all tasks (`make migrate`, `make migrate-status`, `make migrate-down`, …);
+`make check` runs the memory health check.
 
 ## Status
 
 The workflow layer (commands, memory, hooks, CI) is in daily use. The app scaffold is
-intentionally minimal: a health endpoint with tests, a Vue shell, and a placeholder
-`cmd/migrate` you wire to bun's migrator for your project.
+intentionally minimal but real: a health endpoint with CORS and tests, a Vue shell with
+tests, and a bun migrator with embedded SQL migrations whose up/down round trip CI
+verifies against PostgreSQL.
 
 How the system fits together and how to keep it from rotting:
 [`docs/system-guide.md`](docs/system-guide.md).

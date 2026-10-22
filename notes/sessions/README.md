@@ -15,4 +15,5 @@ One file per work session: `YYYY-MM-DD-<slug>.md`. Created at session end via
 - Promote durable decisions to an ADR; promote tasks to `todo/`.
 - Don't delete old notes; they are cheap history.
 
-See `2026-06-11-example.md` for the shape.
+For a real example of a note and what `/kaydet` produces around it, see
+[`examples/workflow/`](../../examples/workflow/).
