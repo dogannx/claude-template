@@ -7,7 +7,7 @@ Naming, Git, and process conventions. Keep these boring and consistent.
 - **Branches:** `type/short-description` — e.g. `feat/user-auth`, `fix/login-redirect`.
 - **Default branch:** `main`. Never commit directly; use PRs.
 - **Commits:** Conventional Commits style:
-  - `feat:`, `fix:`, `refactor:`, `docs:`, `test:`, `chore:`, `perf:`
+  - `feat:`, `fix:`, `refactor:`, `docs:`, `test:`, `chore:`, `perf:`, `build:`, `ci:`
   - Imperative mood, short subject; body explains why if non-obvious.
 
 ## Pull requests

@@ -15,6 +15,7 @@ docker compose exec -T db psql -U "${POSTGRES_USER:-app}" -d postgres \
   -c "DROP DATABASE IF EXISTS \"$DB\";" -c "CREATE DATABASE \"$DB\";"
 
 echo "==> Re-running migrations"
-( cd backend && go run ./cmd/migrate up )
+# .env points at the compose hostname "db"; from the host the DB is on localhost.
+( cd backend && DATABASE_URL="${DATABASE_URL/@db:/@localhost:}" go run ./cmd/migrate up )
 
 echo "==> Database reset complete."

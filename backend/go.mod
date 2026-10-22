@@ -1,4 +1,4 @@
-module github.com/yourname/yourproject/backend
+module github.com/dogannx/claude-template/backend
 
 go 1.22
 

@@ -8,7 +8,7 @@ import (
 	"github.com/uptrace/bun/dialect/pgdialect"
 	"github.com/uptrace/bun/driver/pgdriver"
 
-	"github.com/yourname/yourproject/backend/internal/config"
+	"github.com/dogannx/claude-template/backend/internal/config"
 )
 
 // Connect returns a ready bun.DB. Caller is responsible for Close().

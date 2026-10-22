@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import HomeView from '../views/HomeView.vue'
 
 // Add routes here. Use lazy imports for non-critical pages:
 //   { path: '/x', component: () => import('../views/X.vue') }
 export const router = createRouter({
   history: createWebHistory(),
-  routes: [{ path: '/', name: 'home', component: Home }],
+  routes: [{ path: '/', name: 'home', component: HomeView }],
 })

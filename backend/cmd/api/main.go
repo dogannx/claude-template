@@ -5,9 +5,9 @@ package main
 import (
 	"log"
 
-	"github.com/yourname/yourproject/backend/internal/config"
-	"github.com/yourname/yourproject/backend/internal/database"
-	apihttp "github.com/yourname/yourproject/backend/internal/http"
+	"github.com/dogannx/claude-template/backend/internal/config"
+	"github.com/dogannx/claude-template/backend/internal/database"
+	apihttp "github.com/dogannx/claude-template/backend/internal/http"
 )
 
 func main() {
@@ -19,7 +19,7 @@ func main() {
 	}
 	defer db.Close()
 
-	app := apihttp.NewRouter(db)
+	app := apihttp.NewRouter(db, cfg.CORSOrigins)
 
 	log.Printf("listening on :%s", cfg.AppPort)
 	if err := app.Listen(":" + cfg.AppPort); err != nil {

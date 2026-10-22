@@ -19,7 +19,7 @@ update this file (and consider an ADR for significant changes).
 | Concern        | Choice            | Notes                                          |
 |----------------|-------------------|------------------------------------------------|
 | Framework      | Vue               | SPA                                            |
-| Package mgr    | yarn              | Lockfile committed                             |
+| Package mgr    | yarn 4 (corepack) | Pinned via `packageManager`; lockfile committed |
 | Build / dev    | Vite              | Fast dev server, HMR                           |
 
 ## Infrastructure & tooling

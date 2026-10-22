@@ -11,7 +11,7 @@ jobs:
     name: AI Project OS health
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: System decay check (warnings)
         run: bash scripts/check-system.sh
 
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with: { fetch-depth: 0 }
       - name: Validate commit messages
         run: |
@@ -40,10 +40,9 @@ jobs:
     runs-on: ubuntu-latest
     defaults: { run: { working-directory: backend } }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with: { go-version: 'stable', cache-dependency-path: backend/go.sum }
-      - run: test -f go.mod || { echo "backend not initialized — skipping"; exit 0; }
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with: { go-version-file: backend/go.mod, cache-dependency-path: backend/go.sum }
       - run: gofmt -l . | tee /dev/stderr | (! grep -q .)   # fail if unformatted
       - run: go vet ./...
       - run: go build ./...
@@ -54,11 +53,11 @@ jobs:
     runs-on: ubuntu-latest
     defaults: { run: { working-directory: frontend } }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - run: corepack enable   # yarn version comes from package.json "packageManager"
+      - uses: actions/setup-node@v5
         with: { node-version: 'lts/*', cache: yarn, cache-dependency-path: frontend/yarn.lock }
-      - run: test -f package.json || { echo "frontend not initialized — skipping"; exit 0; }
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
       - run: yarn lint
       - run: yarn build
       - run: yarn test

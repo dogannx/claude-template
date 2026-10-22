@@ -25,7 +25,7 @@ func unreachableDB(t *testing.T) *bun.DB {
 }
 
 func TestRouter(t *testing.T) {
-	app := NewRouter(unreachableDB(t))
+	app := NewRouter(unreachableDB(t), "http://localhost:5173")
 
 	tests := []struct {
 		name       string
@@ -75,5 +75,25 @@ func TestRouter(t *testing.T) {
 			}
 			tt.check(t, body)
 		})
+	}
+}
+
+func TestRouterCORS(t *testing.T) {
+	app := NewRouter(unreachableDB(t), "http://localhost:5173")
+
+	for origin, want := range map[string]string{
+		"http://localhost:5173": "http://localhost:5173",
+		"http://evil.example":   "",
+	} {
+		req := httptest.NewRequest(fiber.MethodGet, "/api/v1/health", nil)
+		req.Header.Set("Origin", origin)
+		resp, err := app.Test(req, 5000)
+		if err != nil {
+			t.Fatalf("request failed: %v", err)
+		}
+		resp.Body.Close()
+		if got := resp.Header.Get("Access-Control-Allow-Origin"); got != want {
+			t.Errorf("origin %s: Allow-Origin = %q, want %q", origin, got, want)
+		}
 	}
 }

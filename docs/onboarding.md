@@ -15,7 +15,7 @@ Welcome. This gets a new teammate (or AI assistant) productive fast.
 ```bash
 cp .env.example .env     # fill in secrets
 make up                  # start the stack
-make migrate             # apply DB migrations
+make migrate             # apply DB migrations (wire cmd/migrate to bun first)
 make test                # confirm everything is green
 ```
 

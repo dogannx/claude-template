@@ -4,14 +4,17 @@ package http
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/uptrace/bun"
 )
 
 // NewRouter builds the Fiber app with all routes registered.
-func NewRouter(db *bun.DB) *fiber.App {
+// corsOrigins is a comma-separated allow-list (config.CORSOrigins).
+func NewRouter(db *bun.DB, corsOrigins string) *fiber.App {
 	app := fiber.New(fiber.Config{
 		ErrorHandler: errorHandler, // consistent error shape for all routes
 	})
+	app.Use(cors.New(cors.Config{AllowOrigins: corsOrigins}))
 
 	api := app.Group("/api/v1")
 	api.Get("/health", healthHandler(db))

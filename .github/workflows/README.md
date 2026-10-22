@@ -9,8 +9,8 @@
 | backend      | gofmt, `go vet`, build, tests                                  |
 | frontend     | lint, build, tests                                             |
 
-Backend/frontend jobs **auto-skip** until those projects are initialized (no `go.mod` /
-`package.json`), so the template is green from day one.
+Both the backend and frontend scaffolds ship with passing tests, so CI is green on a
+fresh copy of the template.
 
 ## Recommended branch protection (Settings → Branches → main)
 

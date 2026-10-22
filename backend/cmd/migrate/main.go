@@ -9,8 +9,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/yourname/yourproject/backend/internal/config"
-	"github.com/yourname/yourproject/backend/internal/database"
+	"github.com/dogannx/claude-template/backend/internal/config"
+	"github.com/dogannx/claude-template/backend/internal/database"
 )
 
 func main() {
